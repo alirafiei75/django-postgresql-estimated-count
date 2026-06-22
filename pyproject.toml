@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-postgresql-estimated-count"
+dynamic = ["version"]
+description = "Fast estimated row counts for Django ORM queries on PostgreSQL"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "ali rafiei"},
+]
+keywords = ["django", "postgresql", "count", "estimate", "admin", "performance"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Database",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "Django>=4.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/alirafiei75/django-postgresql-estimated-count"
+Repository = "https://github.com/alirafiei75/django-postgresql-estimated-count"
+Documentation = "https://github.com/alirafiei75/django-postgresql-estimated-count#readme"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0",
+    "pytest-django>=4.5",
+    "psycopg2-binary>=2.9",
+    "ruff>=0.15",
+    "ty>=0.0.51",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "django_postgresql_estimated_count.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["django_postgresql_estimated_count*"]
+exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+python_files = ["test_*.py"]
+addopts = "-ra"
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ty.environment]
+python-version = "3.10"
+
+[tool.ty.src]
+include = ["django_postgresql_estimated_count"]
